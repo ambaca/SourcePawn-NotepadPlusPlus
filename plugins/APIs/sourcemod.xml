@@ -42,7 +42,22 @@
 		<KeyWord name="Access_Effective" />
 		<KeyWord name="Access_Real" />
 		<KeyWord name="ActivateEntity" />
-		<KeyWord name="AddAdmGroupCmdOverride" />
+		<KeyWord name="AddAdmGroupCmdOverride" func="yes">
+			<Overload retVal="native" descr="
+Usage:
+    id              Group id.
+    name            String containing command name (case sensitive).
+    type            Override type (specific command or group).
+    rule            Override allowdeny setting.
+Return:
+    No Return
+Notes:
+    Adds a group-specific override type."><Param name="GroupId id" />
+				<Param name="const char[] name" />
+				<Param name="OverrideType type" />
+				<Param name="OverrideRule rule" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="AddAmbientSoundHook" />
 		<KeyWord name="AddCommandListener" />
 		<KeyWord name="AddCommandOverride" />
