@@ -3,6 +3,22 @@
 	<AutoComplete language="sourcemod">
 	<Environment ignoreCase="no" startFunc="(" stopFunc=")" paramSeparator="," terminal=";" additionalWordChar = "."/>
 		<!-- Leave IgnoreCase="no" or this API file not work correctly!!!  -->
+<!--
+
+		<KeyWord name="NAME" func="yes">
+			<Overload retVal="RETURN" descr="
+Usage:
+    hook              Function to use as a hook.
+Return:
+    No Return
+Notes:
+    Hooks all played ambient sounds.
+    error    Invalid function hook."><Param name="PARAMETER" />
+			</Overload>
+		</KeyWord>
+
+-->
+
 
 
 		<KeyWord name="ADMFLAG_BAN" />
@@ -33,15 +49,53 @@
 		<KeyWord name="APLRes_Failure" />
 		<KeyWord name="APLRes_SilentFailure" />
 		<KeyWord name="APLRes_Success" />
-		<KeyWord name="ATTN_TO_SNDLEVEL" />
+
+		
+		<KeyWord name="ATTN_TO_SNDLEVEL" func="yes">
+			<Overload retVal="stock int" descr="
+Usage:
+    attn            Attenuation value.
+Return:
+    Integer sound level
+Notes:
+    Converts an attenuation value to a sound level.  
+    This function is from the HL2SDK."><Param name="float attn" />
+			</Overload>
+		</KeyWord>
+
 		<KeyWord name="AUTHMETHOD_IP" />
 		<KeyWord name="AUTHMETHOD_NAME" />
 		<KeyWord name="AUTHMETHOD_STEAM" />
 		<KeyWord name="AUTOLOAD_EXTENSIONS" />
-		<KeyWord name="AcceptEntityInput" />
+
+
+		<KeyWord name="AcceptEntityInput" func="yes">
+			<Overload retVal="native bool" descr="
+Usage:
+    dest            Destination entity index.
+    input           Input action.
+    activator       Entity index which initiated the sequence of actions (-1 for a NULL entity).
+    caller          Entity index from which this event is sent (-1 for a NULL entity).
+    outputid        Unknown.
+Return:
+    True if successful otherwise false.
+Notes:
+    Invokes a named input method on an entity.  
+    After completion (successful or not), the current global variant is re-initialized.
+    error        Invalid entity index or no mod support."><Param name="int dest" />
+				<Param name="const char[] input" />
+				<Param name="int activator=-1" />
+				<Param name="int caller=-1" />
+				<Param name="int outputid=0" />
+			</Overload>
+		</KeyWord>
+
+
 		<KeyWord name="Access_Effective" />
 		<KeyWord name="Access_Real" />
 		<KeyWord name="ActivateEntity" />
+
+		
 		<KeyWord name="AddAdmGroupCmdOverride" func="yes">
 			<Overload retVal="native" descr="
 Usage:
@@ -58,8 +112,45 @@ Notes:
 				<Param name="OverrideRule rule" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="AddAmbientSoundHook" />
-		<KeyWord name="AddCommandListener" />
+
+
+		<KeyWord name="AddAmbientSoundHook" func="yes">
+			<Overload retVal="native" descr="
+Usage:
+    hook            Function to use as a hook.
+Return:
+    No Return
+Notes:
+    Hooks all played ambient sounds.
+    error    Invalid function hook."><Param name="AmbientSHook hook" />
+			</Overload>
+		</KeyWord>
+
+
+		<KeyWord name="AddCommandListener" func="yes">
+			<Overload retVal="native bool" descr="
+Usage:
+    callback        Callback.
+    command         Command, or if not specified, a global listener.
+                    The command is case insensitive.
+Return:
+    True if this feature is available on the current game,
+    false otherwise.
+Notes:
+    Adds a callback that will fire when a command is sent to the server.
+
+    Registering commands is designed to create a new command as part of the UI,
+    whereas this is a lightweight hook on a command string, existing or not.
+    Using Reg*Cmd to intercept is in poor practice, as it physically creates a
+    new command and can slow down dispatch in general.
+
+    To see if this feature is available, use FeatureType_Capability and 
+    FEATURECAP_COMMANDLISTENER."><Param name="CommandListener callback" />
+				<Param name="const char[] command=&quot;&quot;" />
+			</Overload>
+		</KeyWord>
+
+
 		<KeyWord name="AddCommandOverride" />
 		<KeyWord name="AddFileToDownloadsTable" />
 		<KeyWord name="AddGameLogHook" />
