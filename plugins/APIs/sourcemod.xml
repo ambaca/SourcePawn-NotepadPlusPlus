@@ -93,7 +93,17 @@ Notes:
 
 		<KeyWord name="Access_Effective" />
 		<KeyWord name="Access_Real" />
-		<KeyWord name="ActivateEntity" />
+		<KeyWord name="ActivateEntity" func="yes">
+			<Overload retVal="native" descr="
+Usage:
+    entity          Entity index.
+Return:
+    No Return
+Notes:
+    Activates an entity (CBaseAnimating::Activate)
+    error           Invalid entity or lack of mod support."><Param name="int entity" />
+			</Overload>
+		</KeyWord>
 
 		
 		<KeyWord name="AddAdmGroupCmdOverride" func="yes">
@@ -151,8 +161,36 @@ Notes:
 		</KeyWord>
 
 
-		<KeyWord name="AddCommandOverride" />
-		<KeyWord name="AddFileToDownloadsTable" />
+		<KeyWord name="AddCommandOverride" func="yes">
+			<Overload retVal="native" descr="
+Usage:
+    cmd             String containing command name (case sensitive).
+    type            Override type (specific command or group).
+    flags           New admin flag.
+Return:
+    No Return
+Notes:
+    Adds a global command flag override.  Any command registered with this name
+    will assume the new flag.  This is applied retroactively as well."><Param name="const char[] cmd"/>
+				<Param name="OverrideType type"/>
+				<Param name="int flags"/>
+			</Overload>
+		</KeyWord>
+
+
+		<KeyWord name="AddFileToDownloadsTable" func="yes">
+			<Overload retVal="stock" descr="
+Usage:
+    filename        File that will be added to downloadables table.
+Return:
+    No Return
+Notes:
+    Adds a file to the downloadables network string table.
+    This forces a client to download the file if they do not already have it."><Param name="const char[] filename" />
+			</Overload>
+		</KeyWord>
+
+
 		<KeyWord name="AddGameLogHook" />
 		<KeyWord name="AddMenuItem" />
 		<KeyWord name="AddMultiTargetFilter" />
